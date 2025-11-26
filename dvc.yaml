@@ -1,0 +1,19 @@
+stages:
+  preprocess:
+    cmd: python src/pipeline/preprocess.py
+    deps:
+      - data/raw/hcmc_aqi.csv
+      - src/pipeline/preprocess.py
+    outs:
+      - data/processed/processed_aqi.csv
+
+  train:
+    cmd: python src/pipeline/train.py
+    deps:
+      - data/processed/processed_aqi.csv
+      - src/pipeline/train.py
+      - params.yaml
+    params:
+      - train
+    # Metrics, plots, và model (artifacts) được log tự động bởi MLflow
+    # Chúng ta không cần DVC theo dõi chúng, MLflow sẽ lo

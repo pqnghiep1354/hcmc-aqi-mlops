@@ -1,0 +1,11 @@
+preprocess:
+  # (Các tham số tiền xử lý nếu cần)
+  window_size: 3
+  lag_steps: [1, 2]
+
+train:
+  # Tham số cho XGBoost [45, 46]
+  n_estimators: 150
+  max_depth: 8
+  learning_rate: 0.05
+  early_stopping_rounds: 10

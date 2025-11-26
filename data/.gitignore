@@ -1,0 +1,6 @@
+# Bỏ qua tất cả mọi thứ trong thư mục này
+*
+
+# Ngoại trừ các file.dvc và.gitignore
+!*.dvc
+!/.gitignore

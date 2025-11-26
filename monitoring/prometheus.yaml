@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s # Thu thập metrics mỗi 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    # Tự giám sát chính nó
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'fastapi-api'
+    metrics_path: /metrics # Endpoint do prometheus-fastapi-instrumentator tạo ra
+    static_configs:
+      # Sử dụng 'host.docker.internal' để container Prometheus
+      # có thể "nhìn thấy" dịch vụ API đang chạy trên máy chủ (host)
+      # Giả sử API chạy trên cổng 8000
+      - targets: ['host.docker.internal:8000']

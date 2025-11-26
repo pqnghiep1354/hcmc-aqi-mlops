@@ -1,0 +1,65 @@
+name: CD - Build, Push, and Deploy to Google Cloud Run
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  # THAY THẾ BẰNG THÔNG TIN CỦA BẠN
+  GCP_PROJECT_ID: "your-gcp-project-id"
+  GCP_REGION: "asia-southeast1" # Ví dụ: Vùng Singapore
+  SERVICE_NAME: "hcmc-aqi-api"
+  DOCKER_IMAGE: "your-docker-username/hcmc-aqi-api" # Thay thế
+  
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      packages: 'write'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_IMAGE }}:latest, ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+
+  deploy-to-cloud-run:
+    runs-on: ubuntu-latest
+    needs: build-and-push-docker
+    permissions:
+      contents: 'read'
+      id-token: 'write' # Cần thiết để xác thực với Google Cloud
+
+    steps:
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          # Sử dụng Workload Identity Federation (xem hướng dẫn)
+          # Hoặc sử dụng service account key (ít an toàn hơn):
+          credentials_json: ${{ secrets.GCP_SA_KEY_JSON }}
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          region: ${{ env.GCP_REGION }}
+          image: ${{ env.DOCKER_IMAGE }}:latest
+          # Cấu hình biến môi trường cho API trên Cloud Run
+          env_vars: |
+            MLFLOW_TRACKING_URI=${{ secrets.MLFLOW_TRACKING_URI }}
+            # Thêm các biến khác nếu API cần

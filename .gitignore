@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+
+# DVC
+# DVC sẽ tự động thêm data/raw/hcmc_aqi.csv vào đây
+# và data/processed/processed_aqi.csv
+/data/raw/
+/data/processed/
+.dvc/cache/
+.dvc/tmp/
+
+# MLflow
+mlruns/
+.mlflow/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+*.local
+
+# Secrets
+.secrets/
+*.json
+*.env

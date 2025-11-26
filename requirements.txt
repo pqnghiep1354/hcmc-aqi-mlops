@@ -1,0 +1,24 @@
+# == Core API ==
+fastapi
+uvicorn[standard] # 'standard' bao gồm gunicorn [75]
+pydantic
+
+# == ML & Data ==
+pandas
+scikit-learn
+xgboost
+pyyaml
+
+# == MLOps Tools ==
+mlflow >= 2.0
+dvc[gdrive] # [gdrive] để hỗ trợ Google Drive
+apache-airflow
+prometheus-fastapi-instrumentator # 
+evidently # 
+
+# == Testing ==
+pytest
+httpx # Cần cho TestClient của FastAPI
+
+# == Linting ==
+ruff
