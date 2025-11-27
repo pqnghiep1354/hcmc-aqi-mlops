@@ -35,9 +35,6 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             print(f"CRITICAL: Failed to load model on startup. Error: {e}")
     
-    # 2. Gắn công cụ giám sát Prometheus
-    Instrumentator().instrument(app).expose(app)
-    
     yield # API sẵn sàng phục vụ request
 
     # === TẮT ===
@@ -50,6 +47,9 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+# Gắn công cụ giám sát Prometheus sau khi app được tạo
+Instrumentator().instrument(app).expose(app)
 
 @app.get("/health")
 def health_check():

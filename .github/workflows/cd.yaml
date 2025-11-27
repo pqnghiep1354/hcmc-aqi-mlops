@@ -6,10 +6,10 @@ on:
 
 env:
   # THAY THẾ BẰNG THÔNG TIN CỦA BẠN
-  GCP_PROJECT_ID: "your-gcp-project-id"
+  GCP_PROJECT_ID: "hcmc-aqi-mlops"
   GCP_REGION: "asia-southeast1" # Ví dụ: Vùng Singapore
   SERVICE_NAME: "hcmc-aqi-api"
-  DOCKER_IMAGE: "your-docker-username/hcmc-aqi-api" # Thay thế
+  DOCKER_IMAGE: "nghieppham1354/hcmc-aqi-api" # Thay thế
   
 jobs:
   build-and-push-docker:
