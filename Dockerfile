@@ -7,16 +7,16 @@ WORKDIR /app
 
 # Tối ưu Layer Caching [38, 39]
 # 1. Sao chép file requirements trước
-COPY./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
 # 2. Cài đặt thư viện
 # --no-cache-dir để giữ image nhỏ gọn [40]
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 # 3. Sao chép toàn bộ mã nguồn `src` vào thư mục `/app/src`
-COPY./src /app/src
+COPY ./src /app/src
 # Sao chép các file config mà API có thể cần
-COPY./params.yaml /app/params.yaml
+COPY ./params.yaml /app/params.yaml
 
 # Base image này [37] sẽ tự động tìm `app` trong `src/api/main.py`
 # và chạy bằng Gunicorn + Uvicorn
