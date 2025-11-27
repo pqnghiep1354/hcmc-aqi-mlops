@@ -11,8 +11,6 @@ dist/
 # DVC
 # DVC sẽ tự động thêm data/raw/hcmc_aqi.csv vào đây
 # và data/processed/processed_aqi.csv
-/data/raw/
-/data/processed/
 .dvc/cache/
 .dvc/tmp/
 
@@ -28,5 +26,5 @@ mlruns/
 
 # Secrets
 .secrets/
-*.json
-*.env
+secrets/*.json
+secrets/*.env
