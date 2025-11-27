@@ -12,7 +12,6 @@ pyyaml
 # == MLOps Tools ==
 mlflow >= 2.0
 dvc[gdrive] # [gdrive] để hỗ trợ Google Drive
-apache-airflow
 prometheus-fastapi-instrumentator # 
 evidently # 
 
@@ -22,3 +21,8 @@ httpx # Cần cho TestClient của FastAPI
 
 # == Linting ==
 ruff
+
+apache-airflow-providers-postgres
+apache-airflow-providers-celery
+redis
+apache-airflow-providers-fab

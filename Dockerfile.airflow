@@ -1,0 +1,19 @@
+# Sử dụng image Airflow chính thức làm base
+FROM apache/airflow:2.8.1
+
+# Lấy UID từ biến môi trường lúc build, mặc định là 50000
+ARG AIRFLOW_UID=50000
+
+# Chuyển sang user root để cài đặt
+USER root
+
+# Cài đặt các gói hệ thống cần thiết (ví dụ: git, nếu cần)
+# RUN apt-get update && apt-get install -y --no-install-recommends git
+
+# Chuyển về user airflow
+USER ${AIRFLOW_UID}
+
+# Cài đặt các thư viện Python cần thiết cho DAGs
+# Chúng ta sẽ sao chép requirements.txt và cài đặt từ đó
+COPY requirements.txt /
+RUN pip install --no-cache-dir -r /requirements.txt
