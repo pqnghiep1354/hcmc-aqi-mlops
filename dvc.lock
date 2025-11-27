@@ -1,0 +1,40 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/pipeline/preprocess.py
+    deps:
+    - path: data/raw/hcmc_aqi.csv
+      hash: md5
+      md5: a318c7052ddd607da0db2aadced773d1
+      size: 4763898
+    - path: src/pipeline/preprocess.py
+      hash: md5
+      md5: c1171ce07353c969c57505fa3e606bfb
+      size: 2403
+    outs:
+    - path: data/processed/processed_aqi.csv
+      hash: md5
+      md5: ab4c6241d3c195b462cc0a91b03e3231
+      size: 4185856
+  train:
+    cmd: python src/pipeline/train.py
+    deps:
+    - path: data/processed/processed_aqi.csv
+      hash: md5
+      md5: ab4c6241d3c195b462cc0a91b03e3231
+      size: 4185856
+    - path: params.yaml
+      hash: md5
+      md5: 849785916e577ce0fcdc155c4f0f4b58
+      size: 235
+    - path: src/pipeline/train.py
+      hash: md5
+      md5: 5b34a7e0a72d160e290a7e08fbbc8fbc
+      size: 2684
+    params:
+      params.yaml:
+        train:
+          n_estimators: 150
+          max_depth: 8
+          learning_rate: 0.05
+          early_stopping_rounds: 10
