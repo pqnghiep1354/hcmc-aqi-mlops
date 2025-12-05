@@ -1,17 +1,4 @@
-Dưới đây là file `README.md` được viết chuyên nghiệp, chuẩn mực quốc tế, dành riêng cho Github. Nội dung được tối ưu hóa để nhà tuyển dụng hoặc cộng đồng kỹ thuật có thể hiểu ngay kiến trúc và giá trị của dự án.
-
-Bạn hãy copy nội dung bên dưới và lưu vào file `README.md` tại thư mục gốc của dự án.
-
------
-
 # 🌤️ End-to-End MLOps: HCMC Air Quality Forecasting System
-
-[](https://www.python.org/)
-([https://img.shields.io/badge/Docker-Compose-2496ED.svg](https://www.google.com/search?q=https://img.shields.io/badge/Docker-Compose-2496ED.svg))]([https://www.docker.com/](https://www.docker.com/))
-[](https://www.google.com/search?q=%5Bhttps://airflow.apache.org/%5D\(https://airflow.apache.org/\))
-[](https://mlflow.org/)
-[](https://fastapi.tiangolo.com/)
-[](https://www.google.com/search?q=LICENSE)
 
 > **A production-grade MLOps system designed to predict PM2.5 air quality indices in Ho Chi Minh City.**  
 > *Fully containerized, automated, and monitored.*
@@ -236,9 +223,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ```
 
-### Những điểm nhấn giúp README này chuyên nghiệp:
-1.  **Badges:** Các huy hiệu ở đầu tạo cảm giác dự án được bảo trì tốt và sử dụng công nghệ hiện đại.
-2.  **Architecture Diagram (Mermaid):** Github hỗ trợ hiển thị biểu đồ này trực tiếp, giúp người xem hình dung luồng dữ liệu ngay lập tức mà không cần đọc nhiều chữ.
 3.  **Bảng (Table):** Dùng bảng để liệt kê Tech Stack và Access URL giúp thông tin rõ ràng, dễ tra cứu.
 4.  **One-Command Setup:** Nhấn mạnh vào tính dễ dàng khi triển khai (`docker-compose up`).
 5.  **Context:** Có phần giải thích bối cảnh TP.HCM để dự án có ý nghĩa thực tế (AI for Good).
